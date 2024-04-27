@@ -21,6 +21,7 @@ public class State {
     public int getrandValue2() {
         return randValue2;
     }
+
     int framesCounter = 0;
 
     Snake snake;

@@ -36,7 +36,6 @@ public class Apple extends Entity {
     }
     public void draw() {
         DrawRectangle((int) position.x(), (int) position.y(), width, height, color);
-
     }
 }
 
