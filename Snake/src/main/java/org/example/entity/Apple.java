@@ -1,7 +1,6 @@
 package org.example.entity;
 
 import com.raylib.Raylib.Vector2;
-import org.example.state.State;
 
 import static com.raylib.Jaylib.RED;
 import static com.raylib.Raylib.*;
@@ -9,29 +8,25 @@ import static com.raylib.Raylib.*;
 public class Apple extends Entity {
     boolean isEaten;
 
-    public Apple() {
-        State state = new State();
-        int randValue1 = state.getrandValue1();
-        int randValue2 = state.getrandValue2();
+    public int getRandomValue(int min, int max) {
+        return (int) (Math.random() * (max - min + 1)) + min;
+    }
 
+    public Apple() {
         isEaten = false;
         color = RED;
         height = 16;
         width = 16;
         position = new Vector2();
-        position.x(randValue1);
-        position.y(randValue2);
+        position.x(getRandomValue(0,884));
+        position.y(getRandomValue(0,584));
     }
 
     public void update() {
-        State state = new State();
-        int randValue1 = state.getrandValue1();
-        int randValue2 = state.getrandValue2();
-
         if (isEaten) {
             isEaten = false;
-            position.x(randValue1);
-            position.y(randValue2);
+            position.x(getRandomValue(0,884));
+            position.y(getRandomValue(0,584));
         }
     }
     public void draw() {
