@@ -1,6 +1,6 @@
 package org.example.entity;
 
-import com.raylib.Raylib.Vector2;
+import com.raylib.Raylib.*;
 import org.example.state.State;
 
 import java.util.ArrayList;
@@ -86,5 +86,9 @@ public class Snake extends Entity{
 
     protected void grow() {
         for (int i = 0; i < 3; i++) addSnakePart();
+    }
+
+    protected List<Rect> getTotalPosition() {
+        return this.snakeParts.stream().map(vec -> new Rect(vec.x(), vec.y(), width, height)).toList();
     }
 }

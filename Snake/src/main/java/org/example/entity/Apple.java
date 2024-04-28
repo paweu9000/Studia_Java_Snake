@@ -29,8 +29,6 @@ public class Apple extends Entity {
     public void update() {
         if (isEaten) {
             isEaten = false;
-            position.x(getRandomValue(0,884));
-            position.y(getRandomValue(0,584));
         }
     }
     public void draw() {
@@ -39,6 +37,11 @@ public class Apple extends Entity {
 
     protected Rect getAppleRect() {
         return new Rect(position.x(), position.y(), width, height);
+    }
+
+    void rollNewPosition() {
+        position.x(getRandomValue(0,884));
+        position.y(getRandomValue(0,584));
     }
 }
 
