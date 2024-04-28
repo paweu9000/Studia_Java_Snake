@@ -18,7 +18,6 @@ public class EntityManager implements Manager {
         if (checkCollision()) {
             apple.setEaten(true);
             snake.grow();
-            apple.rollNewPosition();
         }
         apple.update();
         snake.update();
@@ -41,22 +40,6 @@ public class EntityManager implements Manager {
         var snakeRect = snake.getHeadRect();
 
         return checkRectCollision(snakeRect, appleRect);
-    }
-
-    protected void rollNewApplePos() {
-        var snakeTotalPos = snake.getTotalPosition();
-        apple.rollNewPosition();
-        var applePos = apple.getAppleRect();
-
-        BiFunction<List<Rect>, Rect, Boolean> inBounds = (List<Rect> snake, Rect apple) -> {
-            for (var rect: snake) {
-                if (checkRectCollision(rect, apple)) return true;
-            }
-            return false;
-        };
-        while (inBounds.apply(snakeTotalPos, applePos)) {
-            apple.rollNewPosition();
-        }
     }
 
     private boolean checkRectCollision(Rect r1, Rect r2) {
