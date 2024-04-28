@@ -29,6 +29,7 @@ public class Apple extends Entity {
     public void update() {
         if (isEaten) {
             isEaten = false;
+            rollNewPosition();
         }
     }
     public void draw() {

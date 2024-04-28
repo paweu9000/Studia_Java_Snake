@@ -40,17 +40,25 @@ public class Snake extends Entity{
             var lastPart = snakeParts.get(snakeParts.size()-1);
             var newPart = new Vector2();
             newPart.x(lastPart.x());
-            newPart.y(lastPart.y()-height);
+            newPart.y(lastPart.y());
             snakeParts.add(newPart);
         }
     }
 
     public void processInput() {
         switch (GetKeyPressed()) {
-            case KEY_A -> direction = Direction.WEST;
-            case KEY_S -> direction = Direction.SOUTH;
-            case KEY_D -> direction = Direction.EAST;
-            case KEY_W -> direction = Direction.NORTH;
+            case KEY_A -> {
+                if (direction != Direction.EAST) direction = Direction.WEST;
+            }
+            case KEY_S -> {
+                if (direction != Direction.NORTH) direction = Direction.SOUTH;
+            }
+            case KEY_D -> {
+                if (direction != Direction.WEST) direction = Direction.EAST;
+            }
+            case KEY_W -> {
+                if (direction != Direction.SOUTH)  direction = Direction.NORTH;
+            }
         }
     }
 
