@@ -29,7 +29,7 @@ public class Snake extends Entity{
         }
     }
 
-    public void addSnakePart() {
+    private void addSnakePart() {
         if (snakeParts.isEmpty()) {
             var vec = new Vector2();
             vec.x(position.x());
@@ -77,5 +77,14 @@ public class Snake extends Entity{
         for (Vector2 part : snakeParts) {
             DrawRectangle((int) part.x(), (int) part.y(), width, height, color);
         }
+    }
+
+    protected Rect getHeadRect() {
+        var head = snakeParts.get(0);
+        return new Rect(head.x(), head.y(), width, height);
+    }
+
+    protected void grow() {
+        for (int i = 0; i < 3; i++) addSnakePart();
     }
 }

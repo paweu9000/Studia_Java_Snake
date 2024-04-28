@@ -1,10 +1,14 @@
 package org.example.entity;
 
 import com.raylib.Raylib.Vector2;
+import lombok.Getter;
+import lombok.Setter;
 
 import static com.raylib.Jaylib.RED;
 import static com.raylib.Raylib.*;
 
+@Getter
+@Setter
 public class Apple extends Entity {
     boolean isEaten;
 
@@ -31,6 +35,10 @@ public class Apple extends Entity {
     }
     public void draw() {
         DrawRectangle((int) position.x(), (int) position.y(), width, height, color);
+    }
+
+    protected Rect getAppleRect() {
+        return new Rect(position.x(), position.y(), width, height);
     }
 }
 

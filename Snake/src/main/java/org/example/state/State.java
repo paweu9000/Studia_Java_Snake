@@ -1,6 +1,7 @@
 package org.example.state;
 import lombok.NoArgsConstructor;
 import org.example.entity.Apple;
+import org.example.entity.EntityManager;
 import org.example.entity.Snake;
 
 import static com.raylib.Jaylib.BLACK;
@@ -13,12 +14,10 @@ public class State {
     final String TITLE = "SNAKE";
     final int FPS = 60;
 
-    Snake snake;
-    Apple apple;
+    EntityManager manager;
 
     public void initializeGame() {
-        snake = new Snake();
-        apple = new Apple();
+        manager = new EntityManager();
         InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, TITLE);
         SetTargetFPS(FPS);
         runLoop();
@@ -34,19 +33,17 @@ public class State {
     }
 
     private void processInput() {
-        snake.processInput();
+        manager.processInput();
     }
 
     private void update() {
-        snake.update();
-        apple.update();
+        manager.update();
     }
 
     private void draw() {
         BeginDrawing();
         ClearBackground(BLACK);
-        apple.draw();
-        snake.draw();
+        manager.draw();
         EndDrawing();
     }
 }
