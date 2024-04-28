@@ -1,5 +1,6 @@
 package org.example.state;
 import lombok.NoArgsConstructor;
+import org.example.entity.Apple;
 import org.example.entity.Snake;
 
 import static com.raylib.Jaylib.BLACK;
@@ -11,10 +12,13 @@ public class State {
     public static final int SCREEN_HEIGHT = 600;
     final String TITLE = "SNAKE";
     final int FPS = 60;
+
     Snake snake;
+    Apple apple;
 
     public void initializeGame() {
         snake = new Snake();
+        apple = new Apple();
         InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, TITLE);
         SetTargetFPS(FPS);
         runLoop();
@@ -35,11 +39,13 @@ public class State {
 
     private void update() {
         snake.update();
+        apple.update();
     }
 
     private void draw() {
         BeginDrawing();
         ClearBackground(BLACK);
+        apple.draw();
         snake.draw();
         EndDrawing();
     }
