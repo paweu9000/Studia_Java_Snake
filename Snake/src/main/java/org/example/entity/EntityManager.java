@@ -6,10 +6,12 @@ import java.util.function.BiFunction;
 public class EntityManager implements Manager {
     Snake snake;
     Apple apple;
+    Score score;
 
     public EntityManager() {
         snake = new Snake();
         apple = new Apple();
+        score = new Score();
     }
 
 
@@ -18,9 +20,11 @@ public class EntityManager implements Manager {
         if (checkCollision()) {
             apple.setEaten(true);
             snake.grow();
+            score.update();
         }
         apple.update();
         snake.update();
+
     }
 
     @Override
@@ -32,6 +36,7 @@ public class EntityManager implements Manager {
     public void draw() {
         apple.draw();
         snake.draw();
+        score.draw();
     }
 
     @Override
