@@ -3,6 +3,7 @@ package org.example.state;
 import com.raylib.Jaylib;
 import lombok.NoArgsConstructor;
 import org.example.entity.EntityManager;
+import org.example.highscores.HighscoreManager;
 import org.example.scene.DeathScene;
 import org.example.scene.PauseScene;
 import org.example.scene.Scene;
@@ -19,11 +20,13 @@ public class State {
     final String TITLE = "SNAKE";
     final int FPS = 60;
     static Scene scene = new PauseScene();
+    HighscoreManager highscoreManager = new HighscoreManager();
 
     static EntityManager manager;
 
     public void initializeGame() {
         manager = new EntityManager();
+        highscoreManager.initialize();
         InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, TITLE);
         SetTargetFPS(FPS);
         runLoop();
@@ -70,5 +73,6 @@ public class State {
         DrawRectangle(150, 150, 900, 600, BLACK);
         DrawText(TUTORIAL_TEXT, SCREEN_WIDTH/4 + 160, SCREEN_HEIGHT - SCREEN_OFFSET + 20, 40, GOLD);
         DrawText(HIGHSCORE_TEXT, SCREEN_WIDTH - SCREEN_OFFSET + 10, SCREEN_OFFSET - 20, 20, LIME);
+        highscoreManager.drawScores();
     }
 }
