@@ -1,37 +1,33 @@
 package org.example.scene;
 
 import com.raylib.Jaylib;
-import com.raylib.Raylib;
-import lombok.Getter;
 import org.example.state.State;
 
 import java.util.HashMap;
-import java.util.Map;
 
-import static com.raylib.Raylib.*;
+import static com.raylib.Raylib.KEY_R;
 
-@Getter
-public class PauseScene extends AbstractScene {
+public class DeathScene extends AbstractScene {
 
-    public PauseScene() {
+    public DeathScene() {
         int height = State.SCREEN_HEIGHT, width = State.SCREEN_WIDTH;
         var pauseVector = new Jaylib.Vector2((float) width /3, (float) height /3 - 100);
         var resumeVector = new Jaylib.Vector2((float) width /3 - 100, (float) height /3);
         textMap = new HashMap<>();
-        isActive = false;
-        textMap.put(pauseVector, "PAUSE");
-        textMap.put(resumeVector, "Press P to resume");
+        isActive = true;
+        textMap.put(pauseVector, "YOU DIED");
+        textMap.put(resumeVector, "Press R to restart");
     }
 
     @Override
     public void processInput(int key) {
-        if (key == KEY_P) {
-            this.isActive = !this.isActive;
+        if (key == KEY_R) {
+            State.resetGame();
         }
     }
 
     @Override
     public boolean isSceneActive() {
-        return this.isActive;
+        return isActive;
     }
 }

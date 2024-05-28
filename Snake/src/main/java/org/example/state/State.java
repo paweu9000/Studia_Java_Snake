@@ -1,6 +1,7 @@
 package org.example.state;
 import lombok.NoArgsConstructor;
 import org.example.entity.EntityManager;
+import org.example.scene.DeathScene;
 import org.example.scene.PauseScene;
 import org.example.scene.Scene;
 
@@ -13,9 +14,9 @@ public class State {
     public static final int SCREEN_HEIGHT = 600;
     final String TITLE = "SNAKE";
     final int FPS = 60;
-    Scene scene = new PauseScene();
+    static Scene scene = new PauseScene();
 
-    EntityManager manager;
+    static EntityManager manager;
 
     public void initializeGame() {
         manager = new EntityManager();
@@ -42,6 +43,7 @@ public class State {
     }
 
     private void update() {
+        if (manager.checkSnakeCollision()) this.scene = new DeathScene();
         manager.update();
     }
 
@@ -51,5 +53,10 @@ public class State {
         manager.draw();
         scene.displayScene();
         EndDrawing();
+    }
+
+    public static void resetGame() {
+        scene = new PauseScene();
+        manager = new EntityManager();
     }
 }
