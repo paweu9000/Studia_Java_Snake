@@ -45,8 +45,8 @@ public class Snake extends Entity{
         }
     }
 
-    public void processInput() {
-        switch (GetKeyPressed()) {
+    public void processInput(int key) {
+        switch (key) {
             case KEY_A -> {
                 if (direction != Direction.EAST) direction = Direction.WEST;
             }

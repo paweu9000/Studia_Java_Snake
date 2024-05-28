@@ -1,8 +1,8 @@
 package org.example.state;
 import lombok.NoArgsConstructor;
-import org.example.entity.Apple;
 import org.example.entity.EntityManager;
-import org.example.entity.Snake;
+import org.example.scene.PauseScene;
+import org.example.scene.Scene;
 
 import static com.raylib.Jaylib.BLACK;
 import static com.raylib.Raylib.*;
@@ -13,6 +13,7 @@ public class State {
     public static final int SCREEN_HEIGHT = 600;
     final String TITLE = "SNAKE";
     final int FPS = 60;
+    Scene scene = new PauseScene();
 
     EntityManager manager;
 
@@ -26,14 +27,18 @@ public class State {
     private void runLoop() {
         while (!WindowShouldClose()) {
             processInput();
-            update();
+            if (!scene.isSceneActive()) {
+                update();
+            }
             draw();
         }
         CloseWindow();
     }
 
     private void processInput() {
-        manager.processInput();
+        var key = GetKeyPressed();
+        scene.processInput(key);
+        if (!scene.isSceneActive()) manager.processInput(key);
     }
 
     private void update() {
@@ -44,6 +49,7 @@ public class State {
         BeginDrawing();
         ClearBackground(BLACK);
         manager.draw();
+        scene.displayScene();
         EndDrawing();
     }
 }
