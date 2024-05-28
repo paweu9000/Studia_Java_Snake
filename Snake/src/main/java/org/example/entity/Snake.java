@@ -96,7 +96,10 @@ public class Snake extends Entity{
         for (int i = 0; i < 3; i++) addSnakePart();
     }
 
-    protected List<Rect> getTotalPosition() {
-        return this.snakeParts.stream().map(vec -> new Rect(vec.x(), vec.y(), width, height)).toList();
+    protected boolean checkCollision() {
+        if (snakeParts.size() < 12) return false;
+        var headRect = new Rect(snakeParts.get(0).x(), snakeParts.get(0).y(), width, height);
+        var rects = this.snakeParts.stream().skip(9).map(vec -> new Rect(vec.x(), vec.y(), width, height)).toList();
+        return rects.stream().anyMatch(tailPart -> EntityManager.checkRectCollision(headRect, tailPart));
     }
 }

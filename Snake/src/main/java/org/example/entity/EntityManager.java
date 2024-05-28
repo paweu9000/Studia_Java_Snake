@@ -11,7 +11,6 @@ public class EntityManager implements Manager {
         score = new Score();
     }
 
-
     @Override
     public void update() {
         if (checkCollision()) {
@@ -39,11 +38,14 @@ public class EntityManager implements Manager {
     public boolean checkCollision() {
         var appleRect = apple.getAppleRect();
         var snakeRect = snake.getHeadRect();
-
         return checkRectCollision(snakeRect, appleRect);
     }
 
-    private boolean checkRectCollision(Rect r1, Rect r2) {
+    public boolean checkSnakeCollision() {
+        return snake.checkCollision();
+    }
+
+    public static boolean checkRectCollision(Rect r1, Rect r2) {
         return (r1.x() + r1.width() > r2.x() &&
                 r1.x() <= r2.x() + r2.width() &&
                 r1.y() + r1.height() >= r2.y() &&
