@@ -23,11 +23,11 @@ public class Score extends Entity{
     public void draw() {
 
         if(score>10){
-            Raylib.DrawText("Score: "+score.toString(),0,0,35, GREEN);
+            Raylib.DrawText("Score: "+score,0,0,35, GREEN);
         }else{
-            Raylib.DrawText("Score: "+score.toString(),0,0,30, GRAY);
+            Raylib.DrawText("Score: "+score,0,0,30, GRAY);
         }
-        Raylib.DrawText("Time: "+ GetTime(),0,40,0, GRAY);
+//        Raylib.DrawText("Time: "+ GetTime(),0,40,0, GRAY);
 
 
     }

@@ -1,8 +1,5 @@
 package org.example.entity;
 
-import java.util.List;
-import java.util.function.BiFunction;
-
 public class EntityManager implements Manager {
     Snake snake;
     Apple apple;
@@ -24,12 +21,11 @@ public class EntityManager implements Manager {
         }
         apple.update();
         snake.update();
-
     }
 
     @Override
-    public void processInput() {
-        snake.processInput();
+    public void processInput(int key) {
+        snake.processInput(key);
     }
 
     @Override
