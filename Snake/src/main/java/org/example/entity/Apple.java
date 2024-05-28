@@ -3,6 +3,7 @@ package org.example.entity;
 import com.raylib.Raylib.Vector2;
 import lombok.Getter;
 import lombok.Setter;
+import org.example.state.State;
 
 import static com.raylib.Jaylib.RED;
 import static com.raylib.Raylib.*;
@@ -22,8 +23,7 @@ public class Apple extends Entity {
         height = 16;
         width = 16;
         position = new Vector2();
-        position.x(getRandomValue(0,884));
-        position.y(getRandomValue(0,584));
+        rollNewPosition();
     }
 
     public void update() {
@@ -41,8 +41,8 @@ public class Apple extends Entity {
     }
 
     void rollNewPosition() {
-        position.x(getRandomValue(0,884));
-        position.y(getRandomValue(0,584));
+        position.x(getRandomValue(State.SCREEN_OFFSET+5, State.SCREEN_WIDTH-State.SCREEN_OFFSET-width-5));
+        position.y(getRandomValue(State.SCREEN_OFFSET+5, State.SCREEN_HEIGHT-State.SCREEN_OFFSET-width-5));
     }
 }
 

@@ -17,8 +17,8 @@ public class Snake extends Entity{
     public Snake() {
         color = WHITE;
         position = new Vector2();
-        position.x(420);
-        position.y(270);
+        position.x(620);
+        position.y(470);
         width = 16;
         height = 16;
         speed = 5f;
@@ -74,10 +74,10 @@ public class Snake extends Entity{
             case WEST -> snakeParts.get(0).x(snakeParts.get(0).x() - speed);
             case SOUTH -> snakeParts.get(0).y(snakeParts.get(0).y() + speed);
         }
-        if (snakeParts.get(0).x() < 0) snakeParts.get(0).x(State.SCREEN_WIDTH);
-        else if (snakeParts.get(0).x() > State.SCREEN_WIDTH) snakeParts.get(0).x(0);
-        else if (snakeParts.get(0).y() > State.SCREEN_HEIGHT) snakeParts.get(0).y(0);
-        else if (snakeParts.get(0).y() < 0) snakeParts.get(0).y(State.SCREEN_HEIGHT);
+        if (snakeParts.get(0).x() < State.SCREEN_OFFSET) snakeParts.get(0).x(State.SCREEN_WIDTH - State.SCREEN_OFFSET - width);
+        else if (snakeParts.get(0).x() > State.SCREEN_WIDTH - State.SCREEN_OFFSET - width) snakeParts.get(0).x(State.SCREEN_OFFSET);
+        else if (snakeParts.get(0).y() > State.SCREEN_HEIGHT - State.SCREEN_OFFSET - width) snakeParts.get(0).y(State.SCREEN_OFFSET);
+        else if (snakeParts.get(0).y() < State.SCREEN_OFFSET) snakeParts.get(0).y(State.SCREEN_HEIGHT - State.SCREEN_OFFSET - width);
     }
 
     @Override
