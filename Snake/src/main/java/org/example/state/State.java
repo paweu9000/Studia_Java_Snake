@@ -8,6 +8,8 @@ import org.example.scene.DeathScene;
 import org.example.scene.PauseScene;
 import org.example.scene.Scene;
 
+import java.io.IOException;
+
 import static com.raylib.Jaylib.*;
 
 @NoArgsConstructor
@@ -24,7 +26,7 @@ public class State {
 
     static EntityManager manager;
 
-    public void initializeGame() {
+    public void initializeGame() throws IOException {
         manager = new EntityManager();
         highscoreManager.initialize();
         InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, TITLE);
@@ -32,7 +34,7 @@ public class State {
         runLoop();
     }
 
-    private void runLoop() {
+    private void runLoop() throws IOException {
         while (!WindowShouldClose()) {
             processInput();
             if (!scene.isSceneActive()) {
@@ -49,8 +51,11 @@ public class State {
         if (!scene.isSceneActive()) manager.processInput(key);
     }
 
-    private void update() {
-        if (manager.checkSnakeCollision()) this.scene = new DeathScene();
+    private void update() throws IOException {
+        if (manager.checkSnakeCollision()) {
+            this.scene = new DeathScene();
+            highscoreManager.updateScores(manager.getScore());
+        }
         manager.update();
     }
 

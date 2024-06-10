@@ -2,11 +2,12 @@ package org.example.entity;
 
 
 import com.raylib.Raylib;
+import lombok.Getter;
 
 import static com.raylib.Jaylib.GRAY;
 import static com.raylib.Jaylib.GREEN;
-import static com.raylib.Raylib.*;
 
+@Getter
 public class Score extends Entity{
     Integer score = 0;
 
@@ -27,8 +28,5 @@ public class Score extends Entity{
         }else{
             Raylib.DrawText("Score: "+score,0,0,30, GRAY);
         }
-//        Raylib.DrawText("Time: "+ GetTime(),0,40,0, GRAY);
-
-
     }
 }

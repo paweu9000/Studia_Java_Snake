@@ -51,4 +51,8 @@ public class EntityManager implements Manager {
                 r1.y() + r1.height() >= r2.y() &&
                 r1.y() <= r2.y() + r2.height());
     }
+
+    public int getScore() {
+        return score.getScore();
+    }
 }
