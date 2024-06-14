@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static com.raylib.Jaylib.DrawText;
 import static com.raylib.Jaylib.LIME;
@@ -50,7 +51,8 @@ public class HighscoreManager {
                 JsonObject jsonObject = new JsonObject();
                 JsonArray jsonArray = gson.toJsonTree(highscores).getAsJsonArray();
                 jsonObject.add("highscores", jsonArray);
-                File file = new File("src/main/resources/highscores.json");
+                ClassLoader classLoader = HighscoreManager.class.getClassLoader();
+                File file = new File(Objects.requireNonNull(classLoader.getResource("highscores.json")).getFile());
                 try (Writer writer = new FileWriter(file)) {
                     gson.toJson(jsonObject, writer);
                 }
